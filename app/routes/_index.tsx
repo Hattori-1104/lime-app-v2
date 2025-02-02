@@ -19,7 +19,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 	const user = String(formData.get("user"))
 	if (content !== "" && user !== "") {
 		await repository.createMessage(content, user)
-		fetch("http://localhost:3000/ws/updated")
+		fetch("http://lime-app-v2.onrender.com/ws/updated")
 	}
 	return await loader()
 }
@@ -42,7 +42,7 @@ export default function Index() {
 	}, [fetcher.data])
 
 	useEffect(() => {
-		const ws = new WebSocket("ws://localhost:3000")
+		const ws = new WebSocket("wss://lime-app-v2.onrender.com")
 		ws.onopen = () => {
 			ws.onmessage = (e) => {
 				if (e.data === "updated") {
