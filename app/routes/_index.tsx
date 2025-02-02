@@ -38,8 +38,6 @@ export default function Index() {
 	useEffect(() => {
 		if (fetcher.data?.messages) {
 			setMessages(fetcher.data.messages)
-			setContent("")
-			contentRef.current?.focus()
 		}
 	}, [fetcher.data])
 
@@ -70,6 +68,8 @@ export default function Index() {
 			contentRef.current?.classList.add("border-red-400")
 		} else {
 			fetcher.submit(e.currentTarget, { method: "post" })
+			setContent("")
+			contentRef.current?.focus()
 		}
 	}
 
